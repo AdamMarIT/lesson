@@ -1,30 +1,17 @@
-<?php 
-    session_start();
+<?php
+session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-    function goodsArr($textfile) //будет принимать имя файла и возвращать массив с товарами
-        {
-            $list = file("$textfile");
-            foreach ($list as $key => $value) {
-            	$good = explode('*', $value);
-            	$goods[]=$good;
-            }
-            return $goods;
-        }
+include_once("classes/DB.php");
+include_once("classes/User.php");
+include_once("classes/Comment.php");
+include_once("classes/Validator.php");
 
-    function amountselect($key, $amount) //будет принимать ключ товара в массиве и количество этого товара и выводить строчный select для выбора количества
-        {
-            if (!empty($amount)) {
-            	for ($i = 0; $i <= $amount; $i++) {
-                    $amountAr[] = "<option> $i </option>";
-
-                }
-            	$amuontStr = implode(" ", $amountAr);
-                $amountSelect = "<select name = '$key'>".$amuontStr."</select>";
-            } 
-            return $amountSelect;
-            
-        }
-
-
-    
-?>
+define("HOST", "localhost");
+define("USER", "root");
+define("PASSWORD", "root");
+define("DBNAME", "guestbook");
+define("CHARSET", "utf8");
+define("SALT", "webDEVblog");
